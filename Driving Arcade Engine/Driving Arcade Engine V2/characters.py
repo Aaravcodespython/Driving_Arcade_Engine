@@ -1,14 +1,12 @@
 import arcade
 
-class Player():
+class Player(arcade.Sprite):
     def __init__(self,x,y):
+        super().__init__()
         self.center_x = x
         self.center_y = y
         self.speed = 4
         self.texture = arcade.make_soft_circle_texture(40,arcade.color.FOREST_GREEN)
-
-    def display(self):
-        pass
 
     def update(self,deltatime=None):
         self.center_x += self.change_x
@@ -20,15 +18,17 @@ class Player():
         if self.right > 1000:
             self.right = 1000
 
-class FastEnemy():
+class FastEnemy(arcade.Sprite):
     def __init__(self,x,y):
+        super().__init__()
         self.center_x = x
         self.center_y = y
+        self.speed = 3
         self.texture = arcade.make_soft_square_texture(30,arcade.color.RED_DEVIL)
 
-    def move(self,deltatime=None):
-        self.center_x += self.change_x
+    def update(self,deltatime=None):
+        self.center_x += self.speed
 
         #bounce off the window walls
         if self.left < 0 or self.right > 1000:
-            self.change_x *= -1
+            self.speed *= -1
