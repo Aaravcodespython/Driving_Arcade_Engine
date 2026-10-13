@@ -39,14 +39,29 @@ class Arena_Engine(arcade.Window):
         self.player_list.draw()
 
         #drawing enemy list
-        self.enemy_list.draw()
+        self.enemies_list.draw()
 
         #drawing on screen text
         arcade.draw_text("This is first arcade game and game loop is running",20,500,arcade.color.SAND,17)
 
-    def on_update(self):
+    def on_update(self, dalta_time):
         self.player_list.update()
         self.enemies_list.update()
+
+    def on_key_press(self,key,modifiers):
+        #system function, cant change function name, always these 3 keywords, automatically catches any key that goes down
+        if key == arcade.key.LEFT:
+            self.hero.change_x = -self.hero.speed
+
+        if key == arcade.key.RIGHT:
+            self.hero.change_x = self.hero.speed
+
+        if key == arcade.key.UP:
+            self.hero.change_y = self.hero.speed
+
+        if key == arcade.key.DOWN:
+            self.hero.change_y = -self.hero.speed
+
 
 #define a function to start the main engine
 def startup():
