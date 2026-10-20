@@ -62,6 +62,13 @@ class Arena_Engine(arcade.Window):
         if key == arcade.key.DOWN:
             self.hero.change_y = -self.hero.speed
 
+    def on_key_release(self, key, modifiers):
+        if key == arcade.key.LEFT or key == arcade.key.RIGHT:
+            self.hero.change_x = 0
+
+        elif key == arcade.key.UP or key == arcade.key.DOWN:
+            self.hero.change_y = 0
+
 
 #define a function to start the main engine
 def startup():
